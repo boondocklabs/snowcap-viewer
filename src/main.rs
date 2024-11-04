@@ -1,15 +1,18 @@
 use std::process::exit;
 
 use colored::Colorize as _;
+use custom_module::MyModule;
 use snowcap::iced::{Element, Task, Theme};
 use snowcap::Snowcap;
 use tracing_subscriber::{self, EnvFilter};
 
+mod custom_module;
+
 pub fn main() -> snowcap::iced::Result {
     tracing_subscriber::fmt()
         .with_env_filter(EnvFilter::from_default_env())
-        .with_file(true)
-        .with_line_number(true)
+        //.with_file(true)
+        //.with_line_number(true)
         .init();
 
     let args: Vec<String> = std::env::args().collect();
@@ -72,6 +75,8 @@ impl SnowcapViewer {
             filename,
             snow: Snowcap::new().unwrap(),
         };
+
+        viewer.snow.modules().register::<MyModule>("custom-module");
 
         viewer.load()?;
 
