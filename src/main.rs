@@ -66,7 +66,7 @@ pub fn main() -> snowcap::iced::Result {
 
 struct SnowcapViewer {
     filename: String,
-    snow: Snowcap<Message>,
+    snow: Snowcap,
 }
 
 impl SnowcapViewer {
@@ -88,25 +88,19 @@ impl SnowcapViewer {
         Ok(())
     }
 
-    fn init(&mut self) -> Task<snowcap::Message<Message>> {
+    fn init(&mut self) -> Task<snowcap::Message> {
         self.snow.init()
     }
 }
 
-#[derive(Debug, Clone)]
-enum Message {}
-
 impl SnowcapViewer {
     #[profiling::function]
-    fn update(
-        &mut self,
-        mut message: snowcap::Message<Message>,
-    ) -> Task<snowcap::Message<Message>> {
-        self.snow.update(&mut message)
+    fn update(&mut self, mut message: snowcap::Message) -> Task<snowcap::Message> {
+        self.snow.update(message)
     }
 
     #[profiling::function]
-    fn view(&self) -> Element<snowcap::Message<Message>> {
+    fn view(&self) -> Element<snowcap::Message> {
         profiling::scope!("View");
         let element = self.snow.view();
         profiling::finish_frame!();

@@ -1,8 +1,8 @@
 {
     column[
-        image(file!{path:"samples/ferris.png"})
+        image(file!{path:"samples/ferris.png"}),
+        text<size:30>(http!{method:"get", url:"https://icanhazip.com"})
         //text<size:30>(timing!{interval:"500ms"}),
-        //text<size:30>(http!{method:"get", url:"https://icanhazip.com"}),
         //text<size:30>(custom-module!{subscribe:["foo", "bar"]})
     ]
 }

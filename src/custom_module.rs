@@ -42,10 +42,7 @@ impl Module for MyModule {
         Ok(MyModuleEvent::Init)
     }
 
-    fn on_event(
-        &mut self,
-        _event: Self::Event,
-    ) -> snowcap::iced::Task<snowcap::module::message::ModuleMessage> {
+    fn on_event(&mut self, _event: Self::Event) -> snowcap::iced::Task<snowcap::Message> {
         println!("Custom module received event: {_event:?}");
         Task::none()
     }

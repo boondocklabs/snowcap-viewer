@@ -23,7 +23,7 @@
                         pick-list#bar<selected:"bar">(["baz", "bar"]),
                         text<size:24>("I'm some text"),
                         text<size:10>("More text in a Column"),
-                        text(http!{url:"http://icanhazi.com"}),
+                        text(http!{url:"http://icanhazip.com"}),
                         image(http!{url:"https://picsum.photos/200/300"}),
                         space<size:10>(),
                         {<height:fill, align-y:center>
@@ -35,10 +35,10 @@
                 // Middle Column container
                 {<width:fill, height:fill, align-x:center, align-y:top, padding:10.0, border:color(#0090a0), width(1), radius(10)>
                     // Middle column (shorthand |)
-                    |<align:center>[
+                    |<align:center,spacing:5>[
                         markdown(file!{path:"README.md"}),
                         //qr-code<cell-size:10>(qr!("https://iced.rs")),
-                        button#my-button(text<size:20>("Button")),
+                        button#my-button<padding:10,50>(text<size:20>("Button")),
                         toggler#toggle-a<toggled:false, label:"Foo", size:20>(),
                         toggler#toggle-b<toggled:false, label:"Bar", size:30>(),
                         toggler<toggled:false, label:"Baz", size:40>(),
@@ -47,10 +47,23 @@
                 },
 
                 // Right Column
-                {<width:200, height:fill, align-x:left, padding:10.0, border:color(#0090a0), width(1), radius(10)>
-                    |[
-                        text<size:30>("Ipsum"),
-                        text(http!{url:"http://corporatelorem.kovah.de/api/3?format=text"})
+                {<
+                    width:220,
+                    height:fill,
+                    align-x:left,
+                    padding:10.0,
+                    border:color(#0090a0),
+                    width(1),
+                    radius(10)
+                >
+                    |<spacing:10>[
+                        text<size:30,text-color:#a99>("Ipsum"),
+                        {<height:shrink>
+                        scrollable<spacing: 5>(|[
+                            text(http!{url:"http://corporatelorem.kovah.de/api/3?format=text"})
+                        ])
+                        },
+                        {<height:100,clip:false> text<size:20>("Footer")}
                     ]
                 }
             ]
